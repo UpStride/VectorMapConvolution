@@ -26,7 +26,7 @@ parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
 parser.add_argument('--decays', nargs='+', help='epochs to decay lr at')
 parser.add_argument('--epochs', default=200, type=int, help='number of epochs')
-parser.add_argument('--batch', default=124, type=int, help='batch size')
+parser.add_argument('--batch', default=64, type=int, help='batch size')
 parser.add_argument('--type', default='quat18', type=str, help='network type (real, quaternion, vector)')
 parser.add_argument('--dataset', default='cifar10', type=str, help='dataset to use')
 parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
@@ -179,12 +179,12 @@ model_parameters = filter(lambda p: p.requires_grad, net.parameters())
 param_count = sum([np.prod(p.size()) for p in model_parameters])
 print('Param count: {}'.format(param_count))
 test_stats = []
-# for epoch in range(start_epoch, start_epoch+args.epochs):
-#     train(epoch)
-#     test_stats.append(test(epoch))
+for epoch in range(start_epoch, start_epoch+args.epochs):
+    train(epoch)
+    test_stats.append(test(epoch))
 
-# with open("./results/results_{}_{}.csv".format(args.dataset, args.type), "w") as f:
-#     wr = csv.writer(f)
-#     wr.writerows(test_stats)
+with open("./results/results_{}_{}.csv".format(args.dataset, args.type), "w") as f:
+    wr = csv.writer(f)
+    wr.writerows(test_stats)
 
-#torch.save(net, 'D:/Projects/VectorMapConvolution1/models/resnet18.pth')
+torch.save(net, './resnet18.pth')
