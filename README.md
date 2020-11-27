@@ -1,10 +1,34 @@
 # VectorMapConvolution
 Paper and code for Vector Map Convolutions
 
-## Install (Ubuntu)
-Clone repo and cd to src
+Paper: https://arxiv.org/pdf/2009.04083.pdf
+forked from https://github.com/gaudetcj/VectorMapConvolution
 
-Run the install.sh script which installs python 3.7, creates a venv in the main directory, and installs packages.
+# Installation
 
-## Run Experiments (Ubuntu)
-Run the run_cifar100.sh script to run several Resnet model sizes with real, quaternion, and vector map networks on cifar 100.
+```bash 
+make build 
+```
+
+```bash 
+make run 
+```
+
+```bash
+python run_classification.py --help
+```
+
+```
+PyTorch CIFAR10/100 Training
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --lr LR               learning rate
+  --decays DECAYS [DECAYS ...]
+                        epochs to decay lr at
+  --epochs EPOCHS       number of epochs
+  --batch BATCH         batch size
+  --type TYPE           network type (real, quaternion, vector)
+  --dataset DATASET     dataset to use
+  --resume, -r          resume from checkpoint
+```
